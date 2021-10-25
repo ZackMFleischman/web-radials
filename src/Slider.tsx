@@ -39,11 +39,6 @@ const StyledSlider = styled(ReactSlider)`
   width: ${sliderWidth}px;
 `;
 
-interface SliderProps {
-  defaultValue: number;
-  label: string;
-}
-
 const StyledSliderContainer = styled.div`
   display: flex;
 `;
@@ -54,11 +49,25 @@ const StyledLabelSpan = styled.span`
   padding-left: 10px;
 `;
 
-export const Slider: React.FC<SliderProps> = ({ defaultValue, label }) => {
+interface SliderProps {
+  defaultValue: number;
+  label: string;
+  onChange?: (value: number) => void;
+}
+
+export const Slider: React.FC<SliderProps> = ({
+  defaultValue,
+  label,
+  onChange: onChangeExternal,
+}) => {
   const [value, setValue] = useState(defaultValue);
-  const onChange = useCallback((newValue) => {
-    setValue(newValue);
-  }, []);
+  const onChange = useCallback(
+    (newValue) => {
+      setValue(newValue);
+      onChangeExternal?.(newValue);
+    },
+    [onChangeExternal]
+  );
 
   return (
     <StyledSliderContainer>
