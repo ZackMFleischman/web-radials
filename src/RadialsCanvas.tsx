@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { renderFrame } from "./renderFrame";
+import { State } from "./State";
 import { useCanvasRenderer } from "./useCanvasRenderer";
 
 const StyledCanvas = styled.canvas`
@@ -10,7 +11,7 @@ const StyledCanvas = styled.canvas`
   overflow-y: none;
 `;
 
-export const RadialsCanvas = () => {
-  const canvasRef = useCanvasRenderer(renderFrame);
+export const RadialsCanvas: React.FC<{ state: State }> = ({ state }) => {
+  const canvasRef = useCanvasRenderer(renderFrame, state);
   return <StyledCanvas id="radials-canvas" ref={canvasRef} />;
 };

@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Slider } from "./Slider";
-import { startingCPVelocity, StateContext } from "./State";
+import { startingCPVelocity, State } from "./State";
 
 const OverlayDiv = styled.div`
   position: absolute;
@@ -36,9 +36,7 @@ const useForceUpdate = () => {
   return forceUpdate;
 };
 
-export const ControlsOverlay = () => {
-  const state = useContext(StateContext);
-
+export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
   const forceUpdate = useForceUpdate();
   useEffect(() => {
     state.renderControls = forceUpdate;

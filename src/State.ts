@@ -87,5 +87,3 @@ export class State {
     );
   }
 }
-
-export const StateContext = createContext<State>(new State());

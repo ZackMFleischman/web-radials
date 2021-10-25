@@ -1,10 +1,9 @@
-import { useRef, useEffect, useCallback, useContext } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { RenderFrame } from "./renderFrame";
-import { StateContext } from "./State";
+import { State } from "./State";
 
-export const useCanvasRenderer = (render: RenderFrame) => {
+export const useCanvasRenderer = (render: RenderFrame, state: State) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const state = useContext(StateContext);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
