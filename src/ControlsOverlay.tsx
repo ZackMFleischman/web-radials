@@ -95,6 +95,11 @@ const StyledFooter = styled.div`
   padding-bottom: 10px;
 `;
 
+const StyledControlScrollerDiv = styled.div`
+  overflow: auto;
+  padding-right: 10px;
+`;
+
 const useForceUpdate = () => {
   const [, updateState] = useState({});
   const forceUpdate = useCallback(() => updateState({}), []);
@@ -316,19 +321,21 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
       {renderControlPointVelocitySection()}
       {renderColorsSection()}
       {renderNumberOfRadialsSection()}
+      {renderNumberOfRadialsSection()}
+      {renderNumberOfRadialsSection()}
     </ControlsDiv>
   );
 
   return (
     <OverlayDiv showBackground={showControls}>
-      <div>
+      <StyledControlScrollerDiv>
         <StyledButton onClick={() => setShowControls((prev) => !prev)}>
           {showControls ? "Hide Controls" : "Show Controls"}
         </StyledButton>
         {showControls && (
           <ControlsContainerDiv>{renderControls()}</ControlsContainerDiv>
         )}
-      </div>
+      </StyledControlScrollerDiv>
       {showControls && (
         <StyledFooter>
           ©
