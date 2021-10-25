@@ -1,5 +1,6 @@
 import vec2 from "vec2";
 import { Curve } from "./Curve";
+import { State } from "./State";
 
 
 const curve = new Curve(
@@ -9,14 +10,17 @@ const curve = new Curve(
   new vec2(190, 110)
 );
 
-export const renderFrame = (ctx: CanvasRenderingContext2D, timeDelta: number) => {
+export type RenderFrame = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D,  state: State, timeDelta: number) => void;
+
+export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   const randomColor = Math.random() > 0.5 ? "#ff8080" : "#0099b0";
   ctx.strokeStyle = randomColor;
   ctx.lineWidth = 2;
 
-
-  for (let i = 0; i < 10; ++i) {
-    const rotation = ((Math.PI * 2) / 10) * i;
+  for (let i = 0; i < state.numRadials; ++i) {
+    const rotation = ((Math.PI * 2) / state.numRadials) * i;
     curve.render(
       ctx,
       rotation,

@@ -1,9 +1,10 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useContext } from "react";
+import { RenderFrame } from "./renderFrame";
+import { StateContext } from "./State";
 
-export const useCanvasRenderer = (
-  render: (context2D: CanvasRenderingContext2D, timeDelta: number) => void
-) => {
+export const useCanvasRenderer = (render: RenderFrame) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const state = useContext(StateContext);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -27,7 +28,7 @@ export const useCanvasRenderer = (
       const deltaTime = timestamp - startTime;
       startTime = timestamp;
 
-      if (context2D) render(context2D, deltaTime);
+      if (canvas && context2D) render(canvas, context2D, state, deltaTime);
 
       renderRequestId = requestAnimationFrame(renderFrame);
     };
@@ -38,7 +39,7 @@ export const useCanvasRenderer = (
       cancelAnimationFrame(renderRequestId);
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [render, resizeCanvas]);
+  }, [render, state, resizeCanvas]);
 
   return canvasRef;
 };

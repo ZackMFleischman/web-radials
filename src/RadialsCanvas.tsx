@@ -1,7 +1,4 @@
-import { useCallback } from "react";
 import styled from "styled-components";
-import vec2 from "vec2";
-import { Curve } from "./Curve";
 import { renderFrame } from "./renderFrame";
 import { useCanvasRenderer } from "./useCanvasRenderer";
 
