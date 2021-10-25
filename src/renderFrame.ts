@@ -19,11 +19,12 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
     if (state.skipEveryNthRadial > 0 && i % (state.skipEveryNthRadial+1) <= state.numberOfRadialsToSkip-1) continue;
 
     const rotation = (((Math.PI * 2) / state.numRadials) * i) + state.spin;
-    curve.render(ctx, rotation, center, state.showControlLines);
+    curve.render(ctx, rotation, center, state.colorPalette[i % state.colorPalette.length], state.showControlLines);
   }
 };
 
 const drawSurroundingCircle = (ctx: CanvasRenderingContext2D, state: State, center: vec2) => {
+  ctx.strokeStyle = state.colorPalette[0];
   ctx.moveTo(center.x + state.maxCurveSize, center.y);
   ctx.arc(center.x, center.y, state.maxCurveSize, 0, Math.PI*2);
   ctx.stroke();

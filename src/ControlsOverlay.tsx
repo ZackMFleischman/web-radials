@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { Slider } from "./Slider";
 import { startingCPVelocity, State } from "./State";
 import { Toggler } from "./Toggler";
+import randomColor from "randomcolor";
+
+// Docs: https://github.com/davidmerfield/randomColor
 
 const OverlayDiv = styled.div<{ showBackground: boolean }>`
   position: absolute;
@@ -53,6 +56,20 @@ const StyledButton = styled.button`
   color: white;
   font-size: 20px;
   margin-top: 10px;
+  cursor: pointer;
+`;
+
+const ControlButton = styled.button`
+  background-color: #0099ff;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const StyledSectionLabel = styled.span`
@@ -91,9 +108,63 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     state.renderControls = forceUpdate;
   }, [forceUpdate, state]);
 
-  const [showControls, setShowControls] = useState(false);
+  const [showControls, setShowControls] = useState(true);
 
   const [allCPVel, setAllCPVel] = useState(startingCPVelocity);
+
+  const renderColorsSection = () => (
+    <>
+      <StyledSectionLabel>Colors</StyledSectionLabel>
+      <ControlButton
+        onClick={() => {
+          state.colorPalette = ["white"];
+          state.colorPaletteSize = 1;
+        }}
+      >
+        All White
+      </ControlButton>
+      <ControlButton
+        onClick={() => {
+          state.colorPalette = randomColor({
+            count: state.colorPaletteSize,
+            hue: "random",
+          });
+
+          state.colorPaletteSize = state.colorPalette.length;
+        }}
+      >
+        Random Colors
+      </ControlButton>
+      <Slider
+        value={state.colorPaletteSize}
+        min={1}
+        max={75}
+        onChange={(size) => {
+          console.log("size: " + size);
+          console.log("pallette: ", state.colorPalette);
+          if (state.colorPalette.length !== size) {
+            console.log("here1");
+            if (state.colorPalette.length > size) {
+              console.log("hereA");
+              state.colorPalette = state.colorPalette.slice(0, size);
+            } else {
+              console.log("hereB");
+              state.colorPalette = state.colorPalette.slice(0, size);
+              const numColorsToGenerate = size - state.colorPalette.length;
+              state.colorPalette = [
+                ...state.colorPalette,
+                ...randomColor({ count: numColorsToGenerate, hue: "random" }),
+              ];
+            }
+          }
+          console.log("new pallette: ", state.colorPalette);
+
+          state.colorPaletteSize = size;
+        }}
+        label="Num of Colors"
+      />
+    </>
+  );
 
   const renderNumberOfRadialsSection = () => (
     <>
@@ -243,6 +314,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     <ControlsDiv>
       {renderControlPointSection()}
       {renderControlPointVelocitySection()}
+      {renderColorsSection()}
       {renderNumberOfRadialsSection()}
     </ControlsDiv>
   );

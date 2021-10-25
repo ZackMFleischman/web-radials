@@ -34,10 +34,15 @@ export class State {
 
   showControlLines = false;
 
+  colorPalette: string[];
+  colorPaletteSize = 1;
+
   renderControls: () => void;
 
   constructor() {
     this.setMaxCurveSize(400);
+
+    this.colorPalette = ["white"];
 
     this.c1x = 90;
     this.c1y = 130;
