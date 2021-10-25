@@ -16,6 +16,10 @@ const OverlayDiv = styled.div<{ showBackground: boolean }>`
     rgba(0, 0, 0, 0)
   );
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   @media (max-width: 768px) {
     padding-left: 5px;
     padding-right: 5px;
@@ -60,6 +64,17 @@ const StyledSectionLabel = styled.span`
     font-size: 14px;
     padding: 8px 0px 2px;
   }
+`;
+
+const StyledAnchor = styled.a`
+ color: white;
+ &:visited { color: whitesmoke; }
+ &:hover { color: #06e; }​
+`;
+
+const StyledFooter = styled.div`
+  font-size: 14px;
+  padding-bottom: 10px;
 `;
 
 const useForceUpdate = () => {
@@ -212,11 +227,21 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
 
   return (
     <OverlayDiv showBackground={showControls}>
-      <StyledButton onClick={() => setShowControls((prev) => !prev)}>
-        {showControls ? "Hide Controls" : "Show Controls"}
-      </StyledButton>
+      <div>
+        <StyledButton onClick={() => setShowControls((prev) => !prev)}>
+          {showControls ? "Hide Controls" : "Show Controls"}
+        </StyledButton>
+        {showControls && (
+          <ControlsContainerDiv>{renderControls()}</ControlsContainerDiv>
+        )}
+      </div>
       {showControls && (
-        <ControlsContainerDiv>{renderControls()}</ControlsContainerDiv>
+        <StyledFooter>
+          ©
+          <StyledAnchor href="http://www.zackmfleischman.com">
+            Zack M Fleischman
+          </StyledAnchor>
+        </StyledFooter>
       )}
     </OverlayDiv>
   );
