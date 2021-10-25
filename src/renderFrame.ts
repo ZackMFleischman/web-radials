@@ -19,7 +19,7 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
     if (state.skipEveryNthRadial > 0 && i % (state.skipEveryNthRadial+1) <= state.numberOfRadialsToSkip-1) continue;
 
     const rotation = (((Math.PI * 2) / state.numRadials) * i) + state.spin;
-    curve.render(ctx, rotation, center);
+    curve.render(ctx, rotation, center, state.showControlLines);
   }
 };
 

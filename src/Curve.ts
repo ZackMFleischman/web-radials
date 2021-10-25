@@ -13,7 +13,7 @@ export class Curve {
     this.a2 = a2;
   }
 
-  render(ctx: CanvasRenderingContext2D, rotation: number = 0, offset: vec2 = new vec2(0,0)) {
+  render(ctx: CanvasRenderingContext2D, rotation: number = 0, offset: vec2 = new vec2(0,0), drawControlLines: boolean = false) {
     const a1 = this.a1.rotate(rotation, undefined, true).add(offset.x, offset.y);
     const c1 = this.c1.rotate(rotation, undefined, true).add(offset.x, offset.y);;
     const c2 = this.c2.rotate(rotation, undefined, true).add(offset.x, offset.y);;
@@ -22,6 +22,14 @@ export class Curve {
     ctx.beginPath();
     ctx.moveTo(a1.x, a1.y);
     ctx.bezierCurveTo(c1.x, c1.y, c2.x, c2.y, a2.x, a2.y);
+
+    if (drawControlLines) {
+      ctx.moveTo(a1.x, a1.y);
+      ctx.lineTo(c1.x, c1.y);
+      ctx.moveTo(c2.x, c2.y);
+      ctx.lineTo(a2.x, a2.y);
+    }
+
     ctx.stroke();
   }
 }

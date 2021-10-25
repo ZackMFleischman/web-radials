@@ -32,6 +32,8 @@ export class State {
   spin = 0;
   spinVelocity = 0.1;
 
+  showControlLines = false;
+
   renderControls: () => void;
 
   constructor() {

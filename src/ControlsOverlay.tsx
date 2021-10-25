@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Slider } from "./Slider";
 import { startingCPVelocity, State } from "./State";
+import { Toggler } from "./Toggler";
 
 const OverlayDiv = styled.div<{ showBackground: boolean }>`
   position: absolute;
@@ -126,6 +127,11 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         max={Math.max(state.skipEveryNthRadial - 1, 1)}
         onChange={(n) => (state.numberOfRadialsToSkip = n)}
         label="Num Radials to Skip"
+      />
+      <Toggler
+        defaultChecked={state.showControlLines}
+        onChange={() => (state.showControlLines = !state.showControlLines)}
+        label="Show Control Lines"
       />
     </>
   );

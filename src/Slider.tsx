@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import ReactSlider, { ReactSliderProps } from "react-slider";
 import styled from "styled-components";
+import { ControlLabel, controlLabelHeight } from "./ControlLabel";
 
 // https://zillow.github.io/react-slider/
-const sliderHeight = 20;
+const sliderHeight = controlLabelHeight;
 const sliderWidth = 200;
 
 const StyledThumb = styled.div`
@@ -51,17 +52,6 @@ const StyledSliderContainer = styled.div<{ fontSize: number }>`
   }
 `;
 
-const StyledLabelSpan = styled.span`
-  text-align: center;
-  line-height: ${sliderHeight}px;
-  padding-left: 10px;
-  font-size: 14px;
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
-`;
-
 interface SliderProps extends Partial<ReactSliderProps<number>> {
   value: number;
   label: string;
@@ -96,7 +86,7 @@ export const Slider: React.FC<SliderProps> = ({
         min={min}
         max={max}
       />
-      <StyledLabelSpan>{label}</StyledLabelSpan>
+      <ControlLabel>{label}</ControlLabel>
     </StyledSliderContainer>
   );
 };
