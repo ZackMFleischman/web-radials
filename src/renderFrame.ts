@@ -16,7 +16,7 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
 
   const curve = state.getCurve();
   for (let i = 0; i < state.numRadials; ++i) {
-    if (state.skipEveryNthRadial > 0 && i % (state.skipEveryNthRadial+1) === 0) continue;
+    if (state.skipEveryNthRadial > 0 && i % (state.skipEveryNthRadial+1) <= state.numberOfRadialsToSkip-1) continue;
 
     const rotation = ((Math.PI * 2) / state.numRadials) * i;
     curve.render(ctx, rotation, center);

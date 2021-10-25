@@ -22,6 +22,7 @@ export class State {
   c2yVelocity: number;
 
   skipEveryNthRadial = 0;
+  numberOfRadialsToSkip = 1;
 
   renderControls: () => void;
 

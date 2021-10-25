@@ -159,7 +159,14 @@ export const ControlsOverlay = () => {
             min={0}
             max={10}
             onChange={(n) => (state.skipEveryNthRadial = n)}
-            label="Skip Every Nth Radial"
+            label="Skip Some Every Nth Radial"
+          />
+          <Slider
+            value={state.numberOfRadialsToSkip}
+            min={1}
+            max={Math.max(state.skipEveryNthRadial - 1, 1)}
+            onChange={(n) => (state.numberOfRadialsToSkip = n)}
+            label="Number of Radials to Skip"
           />
           <h4>Control Points</h4>
           {renderControlPointSliders()}
