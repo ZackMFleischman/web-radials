@@ -1,12 +1,18 @@
 import React from "react";
-import "./App.css";
+import styled from "styled-components";
+import { ControlsOverlay } from "./ControlsOverlay";
 import { RadialsCanvas } from "./RadialsCanvas";
+
+const AppDiv = styled.div`
+  position: relative;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <AppDiv>
       <RadialsCanvas />
-    </div>
+      <ControlsOverlay />
+    </AppDiv>
   );
 }
 
