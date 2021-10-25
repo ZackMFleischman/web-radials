@@ -13,7 +13,7 @@ export const ControlsOverlay = () => {
     <OverlayDiv>
       <h3>Controls</h3>
       <Slider defaultValue={50} label="Foo bar" />
-      <Slider defaultValue={75} label="Foo bar 2" />
+      <Slider defaultValue={75} label="Foo bar 2" step={0.01} smallFont />
     </OverlayDiv>
   );
 };

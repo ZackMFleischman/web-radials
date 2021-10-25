@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import ReactSlider from "react-slider";
+import ReactSlider, { ReactSliderProps } from "react-slider";
 import styled from "styled-components";
 
 // https://zillow.github.io/react-slider/
@@ -39,9 +39,12 @@ const StyledSlider = styled(ReactSlider)`
   width: ${sliderWidth}px;
 `;
 
-const StyledSliderContainer = styled.div`
+const StyledSliderContainer = styled.div<{ fontSize: number }>`
   display: flex;
   padding: 5px 0px;
+  ${StyledThumb} {
+    font-size: ${(p) => p.fontSize}px;
+  }
 `;
 
 const StyledLabelSpan = styled.span`
@@ -50,16 +53,21 @@ const StyledLabelSpan = styled.span`
   padding-left: 10px;
 `;
 
-interface SliderProps {
+interface SliderProps extends Partial<ReactSliderProps<number>> {
   defaultValue: number;
   label: string;
   onChange?: (value: number) => void;
+  smallFont?: boolean;
 }
 
 export const Slider: React.FC<SliderProps> = ({
   defaultValue,
   label,
   onChange: onChangeExternal,
+  step,
+  min,
+  max,
+  smallFont = false,
 }) => {
   const [value, setValue] = useState(defaultValue);
   const onChange = useCallback(
@@ -71,12 +79,15 @@ export const Slider: React.FC<SliderProps> = ({
   );
 
   return (
-    <StyledSliderContainer>
+    <StyledSliderContainer fontSize={smallFont ? 12 : 16}>
       <StyledSlider
-        value={[value]}
-        onChange={onChange}
         renderTrack={Track}
         renderThumb={Thumb}
+        value={[value]}
+        onChange={onChange}
+        step={step}
+        min={min}
+        max={max}
       />
       <StyledLabelSpan>{label}</StyledLabelSpan>
     </StyledSliderContainer>
