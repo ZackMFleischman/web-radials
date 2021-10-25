@@ -37,6 +37,10 @@ export const Track = (props: any, state: any) => (
 
 const StyledSlider = styled(ReactSlider)`
   width: ${sliderWidth}px;
+
+  @media (max-width: 768px) {
+    width: ${sliderWidth * 0.7}px;
+  }
 `;
 
 const StyledSliderContainer = styled.div<{ fontSize: number }>`
@@ -51,6 +55,11 @@ const StyledLabelSpan = styled.span`
   text-align: center;
   line-height: ${sliderHeight}px;
   padding-left: 10px;
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 interface SliderProps extends Partial<ReactSliderProps<number>> {
