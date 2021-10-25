@@ -2,9 +2,10 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import styled from "styled-components";
+import { RadialsCanvas } from "./RadialsCanvas";
 
 const AppHeader = styled.header`
-  background-color: #282c34;
+  background-color: #222222;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,7 @@ const AppHeader = styled.header`
 function App() {
   return (
     <div className="App">
+      <RadialsCanvas />
       <AppHeader>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
