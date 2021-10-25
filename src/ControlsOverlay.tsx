@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Slider } from "./Slider";
 
 const OverlayDiv = styled.div`
   position: absolute;
@@ -6,5 +7,10 @@ const OverlayDiv = styled.div`
 `;
 
 export const ControlsOverlay = () => {
-  return <OverlayDiv>Controls</OverlayDiv>;
+  return (
+    <OverlayDiv>
+      <h3>Controls</h3>
+      <Slider defaultValue={50} label="Foo bar" />
+    </OverlayDiv>
+  );
 };
