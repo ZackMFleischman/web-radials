@@ -13,15 +13,11 @@ export class Curve {
     this.a2 = a2;
   }
 
-  render(ctx: CanvasRenderingContext2D, rotation: number = 0) {
-    const a1 =
-      rotation === 0 ? this.a1 : this.a1.rotate(rotation, undefined, true);
-    const c1 =
-      rotation === 0 ? this.c1 : this.c1.rotate(rotation, undefined, true);
-    const c2 =
-      rotation === 0 ? this.c2 : this.c2.rotate(rotation, undefined, true);
-    const a2 =
-      rotation === 0 ? this.a2 : this.a2.rotate(rotation, undefined, true);
+  render(ctx: CanvasRenderingContext2D, rotation: number = 0, offset: vec2 = new vec2(0,0)) {
+    const a1 = this.a1.rotate(rotation, undefined, true).add(offset.x, offset.y);
+    const c1 = this.c1.rotate(rotation, undefined, true).add(offset.x, offset.y);;
+    const c2 = this.c2.rotate(rotation, undefined, true).add(offset.x, offset.y);;
+    const a2 = this.a2.rotate(rotation, undefined, true).add(offset.x, offset.y);;
 
     ctx.beginPath();
     ctx.moveTo(a1.x, a1.y);
