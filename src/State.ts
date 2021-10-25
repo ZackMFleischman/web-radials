@@ -4,9 +4,11 @@ import { Curve } from "./Curve";
 
 export const startingCPVelocity = 0.5;
 
+const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
+
 export class State {
   maxCurveSize = 450;
-  maxControlPointSize = this.maxCurveSize*7/5;
+  maxControlPointSize = Math.round(this.maxCurveSize*7/5);
   maxCPVelocity = 3;
 
   numRadials = 10;
@@ -45,28 +47,28 @@ export class State {
   }
 
   setC1x(c1x: number) {
-    this.c1x = c1x;
+    this.c1x = clamp(c1x, this.maxControlPointSize);
   }
   setC1y(c1y: number) {
-    this.c1y = c1y;
+    this.c1y = clamp(c1y, this.maxControlPointSize);
   }
   setC2x(c2x: number) {
-    this.c2x = c2x;
+    this.c2x = clamp(c2x, this.maxControlPointSize);
   }
   setC2y(c2y: number) {
-    this.c2y = c2y;
+    this.c2y = clamp(c2y, this.maxControlPointSize);
   }
   setC1xVelocity(vel: number) {
-    this.c1xVelocity = this.c1xVelocity > 0 ? vel : -vel;
+    this.c1xVelocity = clamp(this.c1xVelocity >= 0 ? vel : -vel, this.maxCPVelocity);
   }
   setC1yVelocity(vel: number) {
-    this.c1yVelocity = this.c1yVelocity > 0 ? vel : -vel;
+    this.c1yVelocity = clamp(this.c1yVelocity >= 0 ? vel : -vel, this.maxCPVelocity);
   }
   setC2xVelocity(vel: number) {
-    this.c2xVelocity = this.c2xVelocity > 0 ? vel : -vel;
+    this.c2xVelocity = clamp(this.c2xVelocity >= 0 ? vel : -vel, this.maxCPVelocity);
   }
   setC2yVelocity(vel: number) {
-    this.c2yVelocity = this.c2yVelocity > 0 ? vel : -vel;
+    this.c2yVelocity = clamp(this.c2yVelocity >= 0 ? vel : -vel, this.maxCPVelocity);
   }
 
   getCurve() {
