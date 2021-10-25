@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Slider } from "./Slider";
-import { StateContext } from "./State";
+import { startingCPVelocity, StateContext } from "./State";
 
 const OverlayDiv = styled.div`
   position: absolute;
@@ -34,7 +34,7 @@ export const ControlsOverlay = () => {
 
   const [showControls, setShowControls] = useState(true);
 
-  const [allCPVel, setAllCPVel] = useState(0.05);
+  const [allCPVel, setAllCPVel] = useState(startingCPVelocity);
 
   const renderControlPointSliders = () => {
     return (
@@ -153,6 +153,13 @@ export const ControlsOverlay = () => {
             max={75}
             onChange={state.setNumRadials.bind(state)}
             label="Number of Radials"
+          />
+          <Slider
+            value={state.skipEveryNthRadial}
+            min={0}
+            max={10}
+            onChange={(n) => (state.skipEveryNthRadial = n)}
+            label="Skip Every Nth Radial"
           />
           <h4>Control Points</h4>
           {renderControlPointSliders()}

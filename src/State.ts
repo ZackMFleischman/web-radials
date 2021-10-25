@@ -2,10 +2,12 @@ import {createContext} from "react";
 import vec2 from "vec2";
 import { Curve } from "./Curve";
 
+export const startingCPVelocity = 0.5;
+
 export class State {
   maxCurveSize = 450;
   maxControlPointSize = this.maxCurveSize*7/5;
-  maxCPVelocity = 0.35;
+  maxCPVelocity = 3;
 
   numRadials = 10;
 
@@ -19,6 +21,8 @@ export class State {
   c2xVelocity: number;
   c2yVelocity: number;
 
+  skipEveryNthRadial = 0;
+
   renderControls: () => void;
 
   constructor() {
@@ -27,14 +31,13 @@ export class State {
     this.c2x = 150;
     this.c2y = -20;
 
-    this.c1xVelocity = 0.05;
-    this.c1yVelocity = 0.05;
-    this.c2xVelocity = 0.05;
-    this.c2yVelocity = 0.05;
+    this.c1xVelocity = startingCPVelocity;
+    this.c1yVelocity = startingCPVelocity;
+    this.c2xVelocity = startingCPVelocity;
+    this.c2yVelocity = startingCPVelocity;
 
     this.renderControls = () => {}
   }
-
 
   setNumRadials(numRadials: number) {
     this.numRadials = numRadials;
