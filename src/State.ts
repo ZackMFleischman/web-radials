@@ -14,7 +14,7 @@ export class State {
 
   numRadials = 10;
 
-  windowSizeProportion = 0.8;
+  windowSizeProportion = 0.5;
 
   c1x: number;
   c1y: number;
