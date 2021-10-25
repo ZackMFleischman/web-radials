@@ -29,6 +29,8 @@ export class State {
   renderControls: () => void;
 
   constructor() {
+    this.setMaxCurveSize(400);
+
     this.c1x = 90;
     this.c1y = 130;
     this.c2x = 150;
@@ -44,6 +46,11 @@ export class State {
 
   setNumRadials(numRadials: number) {
     this.numRadials = numRadials;
+  }
+
+  setMaxCurveSize(maxCurveSize: number) {
+    this.maxCurveSize = maxCurveSize;
+    this.maxControlPointSize = Math.round(this.maxCurveSize*6/5);
   }
 
   setC1x(c1x: number) {
