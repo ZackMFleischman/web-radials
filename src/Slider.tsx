@@ -54,14 +54,14 @@ const StyledLabelSpan = styled.span`
 `;
 
 interface SliderProps extends Partial<ReactSliderProps<number>> {
-  defaultValue: number;
+  value: number;
   label: string;
   onChange?: (value: number) => void;
   smallFont?: boolean;
 }
 
 export const Slider: React.FC<SliderProps> = ({
-  defaultValue,
+  value,
   label,
   onChange: onChangeExternal,
   step,
@@ -69,10 +69,8 @@ export const Slider: React.FC<SliderProps> = ({
   max,
   smallFont = false,
 }) => {
-  const [value, setValue] = useState(defaultValue);
   const onChange = useCallback(
     (newValue) => {
-      setValue(newValue);
       onChangeExternal?.(newValue);
     },
     [onChangeExternal]
