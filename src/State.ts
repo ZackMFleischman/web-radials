@@ -5,16 +5,22 @@ import { Curve } from "./Curve";
 export class State {
   numRadials: number;
 
+  maxCurveSize: number
+
   c1x: number;
   c1y: number;
   c2x: number;
   c2y: number;
 
   c1xVelocity: number;
+  c1yVelocity: number;
+  c2xVelocity: number;
+  c2yVelocity: number;
 
   renderControls: () => void;
 
   constructor() {
+    this.maxCurveSize = 250;
     this.numRadials = 10;
 
     this.c1x = 90;
@@ -23,6 +29,9 @@ export class State {
     this.c2y = -20;
 
     this.c1xVelocity = 0.05;
+    this.c1yVelocity = 0.05;
+    this.c2xVelocity = 0.05;
+    this.c2yVelocity = 0.05;
 
     this.renderControls = () => {}
   }
@@ -43,6 +52,18 @@ export class State {
   }
   setC2y(c2y: number) {
     this.c2y = c2y;
+  }
+  setC1xVelocity(vel: number) {
+    this.c1xVelocity = this.c1xVelocity > 0 ? vel : -vel;
+  }
+  setC1yVelocity(vel: number) {
+    this.c1yVelocity = this.c1yVelocity > 0 ? vel : -vel;
+  }
+  setC2xVelocity(vel: number) {
+    this.c2xVelocity = this.c2xVelocity > 0 ? vel : -vel;
+  }
+  setC2yVelocity(vel: number) {
+    this.c2yVelocity = this.c2yVelocity > 0 ? vel : -vel;
   }
 
   getCurve() {

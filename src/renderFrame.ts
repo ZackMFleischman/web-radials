@@ -26,8 +26,15 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
 
 const updateState = (state: State, timeDelta: number) => {
   if (!timeDelta) return;
-  if (state.c1x >= 250 || state.c1x <= -250) state.c1xVelocity = -state.c1xVelocity;
+
+  if (state.c1x >= state.maxCurveSize || state.c1x <= -state.maxCurveSize) state.c1xVelocity = -state.c1xVelocity;
+  if (state.c1y >= state.maxCurveSize || state.c1y <= -state.maxCurveSize) state.c1yVelocity = -state.c1yVelocity;
+  if (state.c2x >= state.maxCurveSize || state.c2x <= -state.maxCurveSize) state.c2xVelocity = -state.c2xVelocity;
+  if (state.c2y >= state.maxCurveSize || state.c2y <= -state.maxCurveSize) state.c2yVelocity = -state.c2yVelocity;
   state.setC1x(state.c1x + state.c1xVelocity*timeDelta);
+  state.setC1y(state.c1y + state.c1yVelocity*timeDelta);
+  state.setC2x(state.c2x + state.c2xVelocity*timeDelta);
+  state.setC2y(state.c2y + state.c2yVelocity*timeDelta);
 
   state.renderControls();
 }
