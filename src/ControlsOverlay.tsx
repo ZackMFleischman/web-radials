@@ -321,8 +321,6 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
       {renderControlPointVelocitySection()}
       {renderColorsSection()}
       {renderNumberOfRadialsSection()}
-      {renderNumberOfRadialsSection()}
-      {renderNumberOfRadialsSection()}
     </ControlsDiv>
   );
 
