@@ -13,7 +13,7 @@ const OverlayDiv = styled.div`
 const StyledDivider = styled.div`
   background-color: grey;
   height: 1px;
-  width: 500px;
+  width: 360px;
   margin: 8px 0px;
 `;
 
@@ -44,7 +44,7 @@ export const ControlsOverlay = () => {
           min={-state.maxCurveSize}
           max={state.maxCurveSize}
           onChange={state.setC1x.bind(state)}
-          label="Control Point 1: x"
+          label="CP 1: x Position"
           smallFont
         />
         <Slider
@@ -52,7 +52,7 @@ export const ControlsOverlay = () => {
           min={-state.maxControlPointSize}
           max={state.maxControlPointSize}
           onChange={state.setC1y.bind(state)}
-          label="Control Point 1: y"
+          label="CP 1: y Position"
           smallFont
         />
         <Slider
@@ -60,7 +60,7 @@ export const ControlsOverlay = () => {
           min={-state.maxControlPointSize}
           max={state.maxControlPointSize}
           onChange={state.setC2x.bind(state)}
-          label="Control Point 2: x"
+          label="CP 2: x Position"
           smallFont
         />
         <Slider
@@ -68,7 +68,7 @@ export const ControlsOverlay = () => {
           min={-state.maxCurveSize}
           max={state.maxCurveSize}
           onChange={state.setC2y.bind(state)}
-          label="Control Point 2: y"
+          label="CP 2: y Position"
           smallFont
         />
       </>
@@ -89,7 +89,7 @@ export const ControlsOverlay = () => {
             state.setC2yVelocity(vel);
             setAllCPVel(vel);
           }}
-          label="Set All Velocities"
+          label="Set All CP Velocities"
           step={0.01}
           smallFont
         />
@@ -99,7 +99,7 @@ export const ControlsOverlay = () => {
           min={0}
           max={state.maxCPVelocity}
           onChange={state.setC1xVelocity.bind(state)}
-          label="Control Point 1: x Velocity"
+          label="CP 1: x Velocity"
           step={0.01}
           smallFont
         />
@@ -108,7 +108,7 @@ export const ControlsOverlay = () => {
           min={0}
           max={state.maxCPVelocity}
           onChange={state.setC1yVelocity.bind(state)}
-          label="Control Point 1: y Velocity"
+          label="CP 1: y Velocity"
           step={0.01}
           smallFont
         />
@@ -117,7 +117,7 @@ export const ControlsOverlay = () => {
           min={0}
           max={state.maxCPVelocity}
           onChange={state.setC2xVelocity.bind(state)}
-          label="Control Point 2: x Velocity"
+          label="CP 2: x Velocity"
           step={0.01}
           smallFont
         />
@@ -126,7 +126,7 @@ export const ControlsOverlay = () => {
           min={0}
           max={state.maxCPVelocity}
           onChange={state.setC2yVelocity.bind(state)}
-          label="Control Point 2: y Velocity"
+          label="CP 2: y Velocity"
           step={0.01}
           smallFont
         />

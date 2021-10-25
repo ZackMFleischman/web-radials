@@ -3,8 +3,8 @@ import ReactSlider, { ReactSliderProps } from "react-slider";
 import styled from "styled-components";
 
 // https://zillow.github.io/react-slider/
-const sliderHeight = 30;
-const sliderWidth = 300;
+const sliderHeight = 20;
+const sliderWidth = 200;
 
 const StyledThumb = styled.div`
   height: ${sliderHeight + 2}px;
@@ -77,7 +77,7 @@ export const Slider: React.FC<SliderProps> = ({
   );
 
   return (
-    <StyledSliderContainer fontSize={smallFont ? 12 : 16}>
+    <StyledSliderContainer fontSize={smallFont ? 9 : 16}>
       <StyledSlider
         renderTrack={Track}
         renderThumb={Thumb}
