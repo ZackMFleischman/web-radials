@@ -41,6 +41,7 @@ const StyledSlider = styled(ReactSlider)`
 
 const StyledSliderContainer = styled.div`
   display: flex;
+  padding: 5px 0px;
 `;
 
 const StyledLabelSpan = styled.span`
