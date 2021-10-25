@@ -13,7 +13,7 @@ export class State {
 
   curveWidth = 4;
 
-  numRadials = 10;
+  numRadials = 15;
   skipEveryNthRadial = 0;
   numberOfRadialsToSkip = 1;
 

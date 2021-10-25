@@ -91,7 +91,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     state.renderControls = forceUpdate;
   }, [forceUpdate, state]);
 
-  const [showControls, setShowControls] = useState(true);
+  const [showControls, setShowControls] = useState(false);
 
   const [allCPVel, setAllCPVel] = useState(startingCPVelocity);
 
