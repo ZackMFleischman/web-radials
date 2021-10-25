@@ -96,7 +96,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
 
   const renderNumberOfRadialsSection = () => (
     <>
-      <StyledSectionLabel>Number of Radials</StyledSectionLabel>
+      <StyledSectionLabel>Radial Properties</StyledSectionLabel>
       <Slider
         value={state.numRadials}
         min={1}
@@ -105,11 +105,20 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         label="Num of Radials"
       />
       <Slider
+        value={state.spinVelocity}
+        min={-1}
+        max={1}
+        step={0.1}
+        onChange={(vel) => (state.spinVelocity = vel)}
+        smallFont
+        label="Spin Velocity"
+      />
+      <Slider
         value={state.skipEveryNthRadial}
         min={0}
         max={10}
         onChange={(n) => (state.skipEveryNthRadial = n)}
-        label="Skip the Nth Radial"
+        label="Skip every Nth one"
       />
       <Slider
         value={state.numberOfRadialsToSkip}

@@ -14,6 +14,8 @@ export class State {
   curveWidth = 4;
 
   numRadials = 10;
+  skipEveryNthRadial = 0;
+  numberOfRadialsToSkip = 1;
 
   windowSizeProportion = 0.7;
 
@@ -27,8 +29,8 @@ export class State {
   c2xVelocity: number;
   c2yVelocity: number;
 
-  skipEveryNthRadial = 0;
-  numberOfRadialsToSkip = 1;
+  spin = 0;
+  spinVelocity = 0.1;
 
   renderControls: () => void;
 

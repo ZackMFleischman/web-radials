@@ -18,7 +18,7 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
   for (let i = 0; i < state.numRadials; ++i) {
     if (state.skipEveryNthRadial > 0 && i % (state.skipEveryNthRadial+1) <= state.numberOfRadialsToSkip-1) continue;
 
-    const rotation = ((Math.PI * 2) / state.numRadials) * i;
+    const rotation = (((Math.PI * 2) / state.numRadials) * i) + state.spin;
     curve.render(ctx, rotation, center);
   }
 };
@@ -56,6 +56,8 @@ const updateState = (state: State, timeDelta: number) => {
   state.setC1y(state.c1y + state.c1yVelocity*(timeDelta/10));
   state.setC2x(state.c2x + state.c2xVelocity*(timeDelta/10));
   state.setC2y(state.c2y + state.c2yVelocity*(timeDelta/10));
+
+  state.spin = state.spin + state.spinVelocity*timeDelta/500 % (Math.PI*2.0)
 
   state.renderControls();
 }
