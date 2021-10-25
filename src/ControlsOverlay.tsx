@@ -41,8 +41,8 @@ export const ControlsOverlay = () => {
       <>
         <Slider
           value={state.c1x}
-          min={-state.maxCurveSize}
-          max={state.maxCurveSize}
+          min={-state.maxControlPointSize}
+          max={state.maxControlPointSize}
           onChange={state.setC1x.bind(state)}
           label="CP 1: x Position"
           smallFont
@@ -65,8 +65,8 @@ export const ControlsOverlay = () => {
         />
         <Slider
           value={state.c2y}
-          min={-state.maxCurveSize}
-          max={state.maxCurveSize}
+          min={-state.maxControlPointSize}
+          max={state.maxControlPointSize}
           onChange={state.setC2y.bind(state)}
           label="CP 2: y Position"
           smallFont

@@ -7,8 +7,8 @@ export const startingCPVelocity = 0.5;
 const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
 
 export class State {
-  maxCurveSize = 450;
-  maxControlPointSize = Math.round(this.maxCurveSize*7/5);
+  maxCurveSize = 400;
+  maxControlPointSize = Math.round(this.maxCurveSize*6/5);
   maxCPVelocity = 3;
 
   numRadials = 10;
@@ -34,10 +34,10 @@ export class State {
     this.c2x = 150;
     this.c2y = -20;
 
-    this.c1xVelocity = startingCPVelocity;
-    this.c1yVelocity = startingCPVelocity;
-    this.c2xVelocity = startingCPVelocity;
-    this.c2yVelocity = startingCPVelocity;
+    this.c1xVelocity = 0.4;
+    this.c1yVelocity = 0.5;
+    this.c2xVelocity = 0.6;
+    this.c2yVelocity = 0.7;
 
     this.renderControls = () => {}
   }

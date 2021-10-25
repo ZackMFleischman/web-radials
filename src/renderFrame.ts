@@ -32,10 +32,26 @@ const drawSurroundingCircle = (ctx: CanvasRenderingContext2D, state: State, cent
 const updateState = (state: State, timeDelta: number) => {
   if (!timeDelta) return;
 
-  if (state.c1x >= state.maxCurveSize || state.c1x <= -state.maxCurveSize) state.c1xVelocity = -state.c1xVelocity;
-  if (state.c1y >= state.maxCurveSize || state.c1y <= -state.maxCurveSize) state.c1yVelocity = -state.c1yVelocity;
-  if (state.c2x >= state.maxCurveSize || state.c2x <= -state.maxCurveSize) state.c2xVelocity = -state.c2xVelocity;
-  if (state.c2y >= state.maxCurveSize || state.c2y <= -state.maxCurveSize) state.c2yVelocity = -state.c2yVelocity;
+  if (state.c1x >= state.maxControlPointSize) 
+    state.c1xVelocity = -Math.abs(state.c1xVelocity);
+  if (state.c1x <= -state.maxControlPointSize) 
+    state.c1xVelocity = Math.abs(state.c1xVelocity);
+
+  if (state.c1y >= state.maxControlPointSize) 
+    state.c1yVelocity = -Math.abs(state.c1yVelocity);
+  if (state.c1y <= -state.maxControlPointSize) 
+    state.c1yVelocity = Math.abs(state.c1yVelocity);
+
+  if (state.c2x >= state.maxControlPointSize) 
+    state.c2xVelocity = -Math.abs(state.c2xVelocity);
+  if (state.c2x <= -state.maxControlPointSize) 
+    state.c2xVelocity = Math.abs(state.c2xVelocity);
+
+  if (state.c2y >= state.maxControlPointSize) 
+    state.c2yVelocity = -Math.abs(state.c2yVelocity);
+  if (state.c2y <= -state.maxControlPointSize) 
+    state.c2yVelocity = Math.abs(state.c2yVelocity);
+
   state.setC1x(state.c1x + state.c1xVelocity*(timeDelta/10));
   state.setC1y(state.c1y + state.c1yVelocity*(timeDelta/10));
   state.setC2x(state.c2x + state.c2xVelocity*(timeDelta/10));
