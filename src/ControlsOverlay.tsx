@@ -138,22 +138,17 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
           state.colorPaletteSize = state.colorPalette.length;
         }}
       >
-        Random Colors
+        {`Random Color${state.colorPaletteSize > 1 ? "s" : ""}`}
       </ControlButton>
       <Slider
         value={state.colorPaletteSize}
         min={1}
-        max={75}
+        max={state.numRadials}
         onChange={(size) => {
-          console.log("size: " + size);
-          console.log("pallette: ", state.colorPalette);
           if (state.colorPalette.length !== size) {
-            console.log("here1");
             if (state.colorPalette.length > size) {
-              console.log("hereA");
               state.colorPalette = state.colorPalette.slice(0, size);
             } else {
-              console.log("hereB");
               state.colorPalette = state.colorPalette.slice(0, size);
               const numColorsToGenerate = size - state.colorPalette.length;
               state.colorPalette = [
@@ -162,7 +157,6 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
               ];
             }
           }
-          console.log("new pallette: ", state.colorPalette);
 
           state.colorPaletteSize = size;
         }}
@@ -178,7 +172,13 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         value={state.numRadials}
         min={1}
         max={75}
-        onChange={state.setNumRadials.bind(state)}
+        onChange={(numRadials) => {
+          state.setNumRadials(numRadials);
+          if (numRadials < state.colorPalette.length) {
+            state.colorPalette = state.colorPalette.slice(0, numRadials);
+            state.colorPaletteSize = numRadials;
+          }
+        }}
         label="Num of Radials"
       />
       <Slider
