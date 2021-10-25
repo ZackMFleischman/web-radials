@@ -2,12 +2,13 @@ import vec2 from "vec2";
 import { Curve } from "./Curve";
 
 export const startingCPVelocity = 1.0;
+const curveSizeToCPSizeRatio = 7.0/5.0;
 
 const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
 
 export class State {
   maxCurveSize = 400;
-  maxControlPointSize = Math.round(this.maxCurveSize*6/5);
+  maxControlPointSize = Math.round(this.maxCurveSize*curveSizeToCPSizeRatio);
   maxCPVelocity = 3;
 
   curveWidth = 4;
@@ -53,7 +54,7 @@ export class State {
 
   setMaxCurveSize(maxCurveSize: number) {
     this.maxCurveSize = maxCurveSize;
-    this.maxControlPointSize = Math.round(this.maxCurveSize*6/5);
+    this.maxControlPointSize = Math.round(this.maxCurveSize*curveSizeToCPSizeRatio);
   }
 
   setC1x(c1x: number) {
