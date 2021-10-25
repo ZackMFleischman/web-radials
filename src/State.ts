@@ -3,9 +3,11 @@ import vec2 from "vec2";
 import { Curve } from "./Curve";
 
 export class State {
-  numRadials: number;
+  maxCurveSize = 450;
+  maxControlPointSize = this.maxCurveSize*7/5;
+  maxCPVelocity = 0.35;
 
-  maxCurveSize: number
+  numRadials = 10;
 
   c1x: number;
   c1y: number;
@@ -20,9 +22,6 @@ export class State {
   renderControls: () => void;
 
   constructor() {
-    this.maxCurveSize = 250;
-    this.numRadials = 10;
-
     this.c1x = 90;
     this.c1y = 130;
     this.c2x = 150;
@@ -71,7 +70,7 @@ export class State {
       new vec2(0, 0),
       new vec2(this.c1x, this.c1y),
       new vec2(this.c2x, this.c2y),
-      new vec2(250, 0)
+      new vec2(this.maxCurveSize, 0)
     );
   }
 }

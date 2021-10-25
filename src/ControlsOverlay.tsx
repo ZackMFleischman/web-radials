@@ -26,10 +26,13 @@ const useForceUpdate = () => {
 
 export const ControlsOverlay = () => {
   const state = useContext(StateContext);
+
   const forceUpdate = useForceUpdate();
   useEffect(() => {
     state.renderControls = forceUpdate;
   }, [forceUpdate, state]);
+
+  const [showControls, setShowControls] = useState(true);
 
   const [allCPVel, setAllCPVel] = useState(0.05);
 
@@ -46,16 +49,16 @@ export const ControlsOverlay = () => {
         />
         <Slider
           value={state.c1y}
-          min={-state.maxCurveSize}
-          max={state.maxCurveSize}
+          min={-state.maxControlPointSize}
+          max={state.maxControlPointSize}
           onChange={state.setC1y.bind(state)}
           label="Control Point 1: y"
           smallFont
         />
         <Slider
           value={state.c2x}
-          min={-state.maxCurveSize}
-          max={state.maxCurveSize}
+          min={-state.maxControlPointSize}
+          max={state.maxControlPointSize}
           onChange={state.setC2x.bind(state)}
           label="Control Point 2: x"
           smallFont
@@ -73,13 +76,12 @@ export const ControlsOverlay = () => {
   };
 
   const renderControlPointVelocitySliders = () => {
-    const maxCPVelocity = 0.5;
     return (
       <>
         <Slider
           value={allCPVel}
           min={0}
-          max={maxCPVelocity}
+          max={state.maxCPVelocity}
           onChange={(vel) => {
             state.setC1xVelocity(vel);
             state.setC1yVelocity(vel);
@@ -95,7 +97,7 @@ export const ControlsOverlay = () => {
         <Slider
           value={Math.abs(state.c1xVelocity)}
           min={0}
-          max={maxCPVelocity}
+          max={state.maxCPVelocity}
           onChange={state.setC1xVelocity.bind(state)}
           label="Control Point 1: x Velocity"
           step={0.01}
@@ -104,7 +106,7 @@ export const ControlsOverlay = () => {
         <Slider
           value={Math.abs(state.c1yVelocity)}
           min={0}
-          max={maxCPVelocity}
+          max={state.maxCPVelocity}
           onChange={state.setC1yVelocity.bind(state)}
           label="Control Point 1: y Velocity"
           step={0.01}
@@ -113,7 +115,7 @@ export const ControlsOverlay = () => {
         <Slider
           value={Math.abs(state.c2xVelocity)}
           min={0}
-          max={maxCPVelocity}
+          max={state.maxCPVelocity}
           onChange={state.setC2xVelocity.bind(state)}
           label="Control Point 2: x Velocity"
           step={0.01}
@@ -122,7 +124,7 @@ export const ControlsOverlay = () => {
         <Slider
           value={Math.abs(state.c2yVelocity)}
           min={0}
-          max={maxCPVelocity}
+          max={state.maxCPVelocity}
           onChange={state.setC2yVelocity.bind(state)}
           label="Control Point 2: y Velocity"
           step={0.01}
@@ -134,19 +136,30 @@ export const ControlsOverlay = () => {
 
   return (
     <OverlayDiv>
-      <h3>Controls</h3>
-
-      <Slider
-        value={state.numRadials}
-        min={1}
-        max={75}
-        onChange={state.setNumRadials.bind(state)}
-        label="Number of Radials"
-      />
-      <h4>Control Points</h4>
-      {renderControlPointSliders()}
-      <h4>Control Point Velocities</h4>
-      {renderControlPointVelocitySliders()}
+      <h3>
+        Controls{"  "}
+        <button
+          style={{ marginLeft: "10px" }}
+          onClick={() => setShowControls((prev) => !prev)}
+        >
+          {showControls ? "Hide" : "Show"}
+        </button>
+      </h3>
+      {showControls && (
+        <>
+          <Slider
+            value={state.numRadials}
+            min={1}
+            max={75}
+            onChange={state.setNumRadials.bind(state)}
+            label="Number of Radials"
+          />
+          <h4>Control Points</h4>
+          {renderControlPointSliders()}
+          <h4>Control Point Velocities</h4>
+          {renderControlPointVelocitySliders()}
+        </>
+      )}
     </OverlayDiv>
   );
 };
