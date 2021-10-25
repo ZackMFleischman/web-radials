@@ -8,13 +8,25 @@ const OverlayDiv = styled.div`
   color: white;
   padding-left: 10px;
   padding-right: 10px;
+  height: 100vh;
 `;
+
+const ControlsDiv = styled.div``;
+
+const ControlsContainerDiv = styled.div``;
 
 const StyledDivider = styled.div`
   background-color: grey;
   height: 1px;
   width: 360px;
   margin: 8px 0px;
+`;
+
+const StyledButton = styled.button`
+  background-color: #0099ff;
+  border-radius: 5px;
+  margin-left: 5px;
+  color: white;
 `;
 
 const useForceUpdate = () => {
@@ -134,45 +146,46 @@ export const ControlsOverlay = () => {
     );
   };
 
+  const renderControls = () => (
+    <ControlsDiv>
+      <Slider
+        value={state.numRadials}
+        min={1}
+        max={75}
+        onChange={state.setNumRadials.bind(state)}
+        label="Number of Radials"
+      />
+      <Slider
+        value={state.skipEveryNthRadial}
+        min={0}
+        max={10}
+        onChange={(n) => (state.skipEveryNthRadial = n)}
+        label="Skip Some Every Nth Radial"
+      />
+      <Slider
+        value={state.numberOfRadialsToSkip}
+        min={1}
+        max={Math.max(state.skipEveryNthRadial - 1, 1)}
+        onChange={(n) => (state.numberOfRadialsToSkip = n)}
+        label="Number of Radials to Skip"
+      />
+      <h4>Control Points</h4>
+      {renderControlPointSliders()}
+      <h4>Control Point Velocities</h4>
+      {renderControlPointVelocitySliders()}
+    </ControlsDiv>
+  );
+
   return (
     <OverlayDiv>
       <h3>
-        Controls{"  "}
-        <button
-          style={{ marginLeft: "10px" }}
-          onClick={() => setShowControls((prev) => !prev)}
-        >
+        Controls{" "}
+        <StyledButton onClick={() => setShowControls((prev) => !prev)}>
           {showControls ? "Hide" : "Show"}
-        </button>
+        </StyledButton>
       </h3>
       {showControls && (
-        <>
-          <Slider
-            value={state.numRadials}
-            min={1}
-            max={75}
-            onChange={state.setNumRadials.bind(state)}
-            label="Number of Radials"
-          />
-          <Slider
-            value={state.skipEveryNthRadial}
-            min={0}
-            max={10}
-            onChange={(n) => (state.skipEveryNthRadial = n)}
-            label="Skip Some Every Nth Radial"
-          />
-          <Slider
-            value={state.numberOfRadialsToSkip}
-            min={1}
-            max={Math.max(state.skipEveryNthRadial - 1, 1)}
-            onChange={(n) => (state.numberOfRadialsToSkip = n)}
-            label="Number of Radials to Skip"
-          />
-          <h4>Control Points</h4>
-          {renderControlPointSliders()}
-          <h4>Control Point Velocities</h4>
-          {renderControlPointVelocitySliders()}
-        </>
+        <ControlsContainerDiv>{renderControls()}</ControlsContainerDiv>
       )}
     </OverlayDiv>
   );
