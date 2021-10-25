@@ -1,7 +1,7 @@
 import vec2 from "vec2";
 import { Curve } from "./Curve";
 
-export const startingCPVelocity = 0.5;
+export const startingCPVelocity = 1.0;
 
 const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
 
@@ -14,7 +14,7 @@ export class State {
 
   numRadials = 10;
 
-  windowSizeProportion = 0.5;
+  windowSizeProportion = 0.7;
 
   c1x: number;
   c1y: number;
@@ -39,10 +39,10 @@ export class State {
     this.c2x = 150;
     this.c2y = -20;
 
-    this.c1xVelocity = 0.4;
-    this.c1yVelocity = 0.5;
-    this.c2xVelocity = 0.6;
-    this.c2yVelocity = 0.7;
+    this.c1xVelocity = 1.0;
+    this.c1yVelocity = 1.2;
+    this.c2xVelocity = 1.4;
+    this.c2yVelocity = 1.6;
 
     this.renderControls = () => {}
   }
