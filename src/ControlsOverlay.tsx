@@ -95,6 +95,12 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
 
   const [allCPVel, setAllCPVel] = useState(startingCPVelocity);
 
+  const renderColorsSection = () => (
+    <>
+      <StyledSectionLabel>Colors</StyledSectionLabel>
+    </>
+  );
+
   const renderNumberOfRadialsSection = () => (
     <>
       <StyledSectionLabel>Radial Properties</StyledSectionLabel>
@@ -104,6 +110,13 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         max={75}
         onChange={state.setNumRadials.bind(state)}
         label="Num of Radials"
+      />
+      <Slider
+        value={state.curveWidth}
+        min={1}
+        max={30}
+        onChange={(value) => (state.curveWidth = value)}
+        label="Radial Thickness"
       />
       <Slider
         value={state.spinVelocity}
@@ -136,7 +149,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     </>
   );
 
-  const renderControlPointSliders = () => (
+  const renderControlPointSection = () => (
     <>
       <StyledSectionLabel>Control Points</StyledSectionLabel>
       <Slider
@@ -174,7 +187,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     </>
   );
 
-  const renderControlPointVelocitySliders = () => (
+  const renderControlPointVelocitySection = () => (
     <>
       <StyledSectionLabel>Control Point Velocities</StyledSectionLabel>
       <Slider
@@ -234,8 +247,9 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
 
   const renderControls = () => (
     <ControlsDiv>
-      {renderControlPointSliders()}
-      {renderControlPointVelocitySliders()}
+      {renderControlPointSection()}
+      {renderControlPointVelocitySection()}
+      {renderColorsSection()}
       {renderNumberOfRadialsSection()}
     </ControlsDiv>
   );
