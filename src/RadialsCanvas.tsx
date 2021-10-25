@@ -1,5 +1,7 @@
 import { useCallback } from "react";
 import styled from "styled-components";
+import vec2 from "vec2";
+import { Curve } from "./Curve";
 import { useCanvasRenderer } from "./useCanvasRenderer";
 
 const StyledCanvas = styled.canvas`
@@ -21,7 +23,16 @@ export const RadialsCanvas = () => {
 
       ctx.strokeStyle = randomColor;
       ctx.lineWidth = 2;
-      renderCurve(ctx);
+
+      // ctx.moveTo(30, 30);
+      // ctx.bezierCurveTo(120, 160, 180, 10, 220, 140);
+      const curve = new Curve(
+        new vec2(30, 30),
+        new vec2(120, 160),
+        new vec2(180, 10),
+        new vec2(220, 140)
+      );
+      curve.render(ctx);
     },
     []
   );
@@ -29,11 +40,4 @@ export const RadialsCanvas = () => {
   const canvasRef = useCanvasRenderer(renderFrame);
 
   return <StyledCanvas id="radials-canvas" ref={canvasRef} />;
-};
-
-const renderCurve = (ctx: CanvasRenderingContext2D) => {
-  ctx.beginPath();
-  ctx.moveTo(30, 30);
-  ctx.bezierCurveTo(120, 160, 180, 10, 220, 140);
-  ctx.stroke();
 };

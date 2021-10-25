@@ -2018,6 +2018,11 @@
   dependencies:
     source-map "^0.6.1"
 
+"@types/vec2@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@types/vec2/-/vec2-1.6.1.tgz#4f02685683f8db18b40cfb4ac56b52f76ee10831"
+  integrity sha512-8Lhxlrz3v+rb0jq3b3WApSEllsmMEQ8tmlUHKEBlOCdQUHhHU0L1BPqAJtihz/YD0bcUYygC7oHCQIB2phsLKQ==
+
 "@types/webpack-sources@*":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/webpack-sources/-/webpack-sources-2.1.0.tgz#8882b0bd62d1e0ce62f183d0d01b72e6e82e8c10"
@@ -11174,6 +11179,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vec2@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/vec2/-/vec2-1.6.1.tgz#45fad8384558fb103000e48d54e60c02804d181d"
+  integrity sha512-6/1i+Z2JSglrBQYCrjogt8f2X3pFXRpFOncMBrUL+T+640+bOBRRTXvZx3HUnaGelioNmfBLUnIIKdqwjO1hHw==
 
 vendors@^1.0.0:
   version "1.0.4"
