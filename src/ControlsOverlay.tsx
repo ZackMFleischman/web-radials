@@ -95,12 +95,6 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
 
   const [allCPVel, setAllCPVel] = useState(startingCPVelocity);
 
-  const renderColorsSection = () => (
-    <>
-      <StyledSectionLabel>Colors</StyledSectionLabel>
-    </>
-  );
-
   const renderNumberOfRadialsSection = () => (
     <>
       <StyledSectionLabel>Radial Properties</StyledSectionLabel>
@@ -249,7 +243,6 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
     <ControlsDiv>
       {renderControlPointSection()}
       {renderControlPointVelocitySection()}
-      {renderColorsSection()}
       {renderNumberOfRadialsSection()}
     </ControlsDiv>
   );
