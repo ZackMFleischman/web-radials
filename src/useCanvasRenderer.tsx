@@ -10,8 +10,13 @@ export const useCanvasRenderer = (render: RenderFrame, state: State) => {
     if (canvas) {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+
+      const newMaxCurveSize =
+        (Math.min(canvas.width, canvas.height) * state.windowSizeProportion) /
+        2;
+      state.setMaxCurveSize(newMaxCurveSize);
     }
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     let renderRequestId: number;

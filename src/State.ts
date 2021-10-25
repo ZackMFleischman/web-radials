@@ -1,4 +1,3 @@
-import {createContext} from "react";
 import vec2 from "vec2";
 import { Curve } from "./Curve";
 
@@ -12,6 +11,8 @@ export class State {
   maxCPVelocity = 3;
 
   numRadials = 10;
+
+  windowSizeProportion = 0.8;
 
   c1x: number;
   c1y: number;
