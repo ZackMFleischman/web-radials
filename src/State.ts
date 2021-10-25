@@ -10,6 +10,8 @@ export class State {
   maxControlPointSize = Math.round(this.maxCurveSize*6/5);
   maxCPVelocity = 3;
 
+  curveWidth = 4;
+
   numRadials = 10;
 
   windowSizeProportion = 0.8;

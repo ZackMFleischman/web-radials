@@ -10,7 +10,7 @@ export const renderFrame: RenderFrame = (canvas, ctx,  state, timeDelta) => {
   // Setup next frame
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = "white";
-  ctx.lineWidth = 20;
+  ctx.lineWidth = state.curveWidth;
 
   drawSurroundingCircle(ctx, state, center);
 
