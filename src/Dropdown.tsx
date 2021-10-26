@@ -51,10 +51,17 @@ const customSelectStyles = {
     height: `${selectControlHeight}px`,
     minHeight: `${selectControlHeight}px`,
   }),
+  menu: (provided: any) => ({
+    ...provided,
+    zIndex: 9,
+  }),
+  menuList: (provided: any) => ({
+    ...provided,
+    zIndex: 9,
+  }),
 };
 
 const StyledSelect = styled(Select)`
-  z-index: 2;
   margin-top: 3px;
   margin-bottom: 5px;
   width: ${sliderWidth}px;

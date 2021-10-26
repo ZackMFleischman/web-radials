@@ -126,17 +126,9 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
   const renderColorsSection = () => (
     <>
       <StyledSectionLabel>Colors</StyledSectionLabel>
-      <ControlButton
-        onClick={() => {
-          state.colorPalette = ["white"];
-          state.colorPaletteSize = 1;
-          state.colorHue = { value: "white", label: "White" };
-        }}
-      >
-        All White
-      </ControlButton>
       <Dropdown
         options={[
+          { value: "white", label: "White" },
           { value: "blue", label: "Blue" },
           { value: "red", label: "Red" },
           { value: "green", label: "Green" },
@@ -145,7 +137,6 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
           { value: "purple", label: "Purple" },
           { value: "pink", label: "Pink" },
           { value: "monochrome", label: "Monochrome" },
-          { value: "white", label: "White" },
           { value: "random", label: "Random" },
         ]}
         value={state.colorHue}
@@ -209,7 +200,7 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
           state.generateColorPalette();
         }}
       >
-        Regenerate Palette
+        Regenerate Color Palette
       </StyledRegenPaletteButton>
     </>
   );

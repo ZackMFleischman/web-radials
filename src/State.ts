@@ -40,8 +40,8 @@ export class State {
 
   colorPalette: string[];
   colorPaletteSize = 1;
-  colorHue?: DropdownOption;
-  colorLuminosity?: DropdownOption<Luminosity>;
+  colorHue?: DropdownOption = { value: "white", label: "White" };
+  colorLuminosity?: DropdownOption<Luminosity> = { value: "normal", label: "Normal" };
 
   renderControls: () => void;
 
