@@ -13,12 +13,11 @@ export class Curve {
     this.a2 = a2;
   }
 
-  render(ctx: CanvasRenderingContext2D, rotation: number = 0, offset: vec2 = new vec2(0,0), color: string, drawControlLines: boolean = false) {
-
-    const a1 = this.a1.rotate(rotation, undefined, true).add(offset.x, offset.y);
-    const c1 = this.c1.rotate(rotation, undefined, true).add(offset.x, offset.y);;
-    const c2 = this.c2.rotate(rotation, undefined, true).add(offset.x, offset.y);;
-    const a2 = this.a2.rotate(rotation, undefined, true).add(offset.x, offset.y);;
+  render(ctx: CanvasRenderingContext2D, rotation: number = 0, offset: vec2 = new vec2(0,0), color: string, drawControlLines: boolean = false, scale: number = 0.7) {
+    const a1 = this.a1.multiply(scale, scale, true).rotate(rotation, undefined, true).add(offset.x, offset.y);
+    const c1 = this.c1.multiply(scale, scale, true).rotate(rotation, undefined, true).add(offset.x, offset.y);;
+    const c2 = this.c2.multiply(scale, scale, true).rotate(rotation, undefined, true).add(offset.x, offset.y);;
+    const a2 = this.a2.multiply(scale, scale, true).rotate(rotation, undefined, true).add(offset.x, offset.y);;
 
     ctx.strokeStyle = color;
     ctx.beginPath();

@@ -15,6 +15,9 @@ export class State {
   maxControlPointSize = Math.round(this.maxCurveSize*curveSizeToCPSizeRatio);
   maxCPVelocity = 3;
 
+  scale = 0.7;
+  scaleVelocity = 0;
+
   curveWidth = 4;
 
   numRadials = 15;
