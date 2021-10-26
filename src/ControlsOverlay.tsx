@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Slider } from "./Slider";
-import { startingCPVelocity, State } from "./State";
+import { Luminosity, startingCPVelocity, State } from "./State";
 import { Toggler } from "./Toggler";
 import randomColor from "randomcolor";
-import { Dropdown } from "./Dropdown";
+import { Dropdown, DropdownOption } from "./Dropdown";
 
 // Docs: https://github.com/davidmerfield/randomColor
 
@@ -73,6 +73,10 @@ const ControlButton = styled.button`
   }
 `;
 
+const StyledRegenPaletteButton = styled(ControlButton)`
+  margin-top: 5px;
+`;
+
 const StyledSectionLabel = styled.span`
   color: white;
   font-size: 16px;
@@ -99,6 +103,7 @@ const StyledFooter = styled.div`
 const StyledControlScrollerDiv = styled.div`
   overflow: auto;
   padding-right: 10px;
+  height: 100%;
 `;
 
 const useForceUpdate = () => {
@@ -125,30 +130,47 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         onClick={() => {
           state.colorPalette = ["white"];
           state.colorPaletteSize = 1;
+          state.colorHue = { value: "white", label: "White" };
         }}
       >
         All White
       </ControlButton>
-      <ControlButton
-        onClick={() => {
-          state.colorPalette = randomColor({
-            count: state.colorPaletteSize,
-            hue: "random",
-          });
-
-          state.colorPaletteSize = state.colorPalette.length;
-        }}
-      >
-        {`Random Color${state.colorPaletteSize > 1 ? "s" : ""}`}
-      </ControlButton>
       <Dropdown
         options={[
-          { value: "chocolate", label: "Chocolate" },
-          { value: "strawberry", label: "Strawberry" },
-          { value: "vanilla", label: "Vanilla" },
+          { value: "blue", label: "Blue" },
+          { value: "red", label: "Red" },
+          { value: "green", label: "Green" },
+          { value: "orange", label: "Orange" },
+          { value: "yellow", label: "Yellow" },
+          { value: "purple", label: "Purple" },
+          { value: "pink", label: "Pink" },
+          { value: "monochrome", label: "Monochrome" },
+          { value: "white", label: "White" },
+          { value: "random", label: "Random" },
         ]}
-        placeholder="Select Color Palette..."
-        label="Color Palette"
+        value={state.colorHue}
+        onChange={(hue) => {
+          state.colorHue = hue;
+          state.generateColorPalette();
+        }}
+        placeholder="Select..."
+        label="Hue"
+      />
+      <Dropdown
+        options={[
+          { value: "normal", label: "Normal" },
+          { value: "light", label: "Light" },
+          { value: "dark", label: "Dark" },
+          { value: "bright", label: "Bright" },
+          { value: "random", label: "Random" },
+        ]}
+        value={state.colorLuminosity as DropdownOption}
+        onChange={(luminosity) => {
+          state.colorLuminosity = luminosity as DropdownOption<Luminosity>;
+          state.generateColorPalette();
+        }}
+        placeholder="Select..."
+        label="Luminosity"
       />
       <Slider
         value={state.colorPaletteSize}
@@ -163,7 +185,17 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
               const numColorsToGenerate = size - state.colorPalette.length;
               state.colorPalette = [
                 ...state.colorPalette,
-                ...randomColor({ count: numColorsToGenerate, hue: "random" }),
+                ...randomColor({
+                  count: numColorsToGenerate,
+                  hue:
+                    state.colorHue?.value === "white"
+                      ? "monochrome"
+                      : state.colorHue?.value ?? "random",
+                  luminosity:
+                    state.colorLuminosity?.value === "normal"
+                      ? undefined
+                      : state.colorLuminosity?.value,
+                }),
               ];
             }
           }
@@ -172,6 +204,13 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         }}
         label="Num of Colors"
       />
+      <StyledRegenPaletteButton
+        onClick={() => {
+          state.generateColorPalette();
+        }}
+      >
+        Regenerate Palette
+      </StyledRegenPaletteButton>
     </>
   );
 

@@ -43,10 +43,11 @@ const customSelectStyles = {
     ...provided,
     paddingTop: 2,
     paddingLeft: 5,
+    display: "inline-block",
     color: "white",
   }),
   valueContainer: () => ({
-    fontSize: "16px",
+    fontSize: "15px",
     height: `${selectControlHeight}px`,
     minHeight: `${selectControlHeight}px`,
   }),
@@ -54,8 +55,8 @@ const customSelectStyles = {
 
 const StyledSelect = styled(Select)`
   z-index: 2;
-  margin-top: 2px;
-  margin-bottom: 3px;
+  margin-top: 3px;
+  margin-bottom: 5px;
   width: ${sliderWidth}px;
 
   @media (max-width: 768px) {
@@ -74,21 +75,25 @@ const StyledDropdownDiv = styled.div`
   width: 100%;
 `;
 
-interface DropdownOption {
-  value: string;
+export interface DropdownOption<T = string> {
+  value: T;
   label: string;
 }
 
-interface DropdownProps {
+interface DropdownProps<T = string> {
   placeholder: string;
   options: DropdownOption[];
   label: string;
+  value?: DropdownOption;
+  onChange: (newValue: DropdownOption<T>) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   placeholder,
   options,
   label,
+  value,
+  onChange,
 }) => {
   return (
     <StyledDropdownDiv>
@@ -96,6 +101,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
         options={options}
         styles={customSelectStyles}
         placeholder={placeholder}
+        value={value}
+        onChange={(newValue) => onChange(newValue as DropdownOption)}
       />
       <ControlLabel>{label}</ControlLabel>
     </StyledDropdownDiv>

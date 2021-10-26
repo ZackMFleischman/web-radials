@@ -1,10 +1,14 @@
 import vec2 from "vec2";
 import { Curve } from "./Curve";
+import { DropdownOption } from "./Dropdown";
+import randomColor from "randomcolor";
 
 export const startingCPVelocity = 1.0;
 const curveSizeToCPSizeRatio = 7.0/5.0;
 
 const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
+
+export type Luminosity = "normal" | "random" | "dark" | "light" | "bright" | undefined;
 
 export class State {
   maxCurveSize = 400;
@@ -36,6 +40,8 @@ export class State {
 
   colorPalette: string[];
   colorPaletteSize = 1;
+  colorHue?: DropdownOption;
+  colorLuminosity?: DropdownOption<Luminosity>;
 
   renderControls: () => void;
 
@@ -98,5 +104,18 @@ export class State {
       new vec2(this.c2x, this.c2y),
       new vec2(this.maxCurveSize, 0)
     );
+  }
+
+  generateColorPalette() {
+    this.colorPalette =
+      this.colorHue?.value === "white"
+        ? ["white"]
+        : randomColor({
+            count: this.colorPaletteSize,
+            hue: this.colorHue?.value ?? "random",
+            luminosity: this.colorLuminosity?.value === "normal" ? undefined : this.colorLuminosity?.value
+          });
+
+    this.colorPaletteSize = this.colorPalette.length;
   }
 }
