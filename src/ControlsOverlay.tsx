@@ -227,6 +227,26 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
         label="Num of Radials"
       />
       <Slider
+        value={state.scale}
+        min={1 - state.maxScaleDelta}
+        max={1 + state.maxScaleDelta}
+        step={0.01}
+        onChange={(scale) => (state.scale = scale)}
+        smallFont
+        label="Scale"
+      />
+      <Slider
+        value={Math.abs(state.scaleVelocity)}
+        min={0}
+        max={1}
+        step={0.05}
+        onChange={(vel) => {
+          state.setScaleVelocity(vel);
+        }}
+        smallFont
+        label="Scale Velocity"
+      />
+      <Slider
         value={state.curveWidth}
         min={1}
         max={30}

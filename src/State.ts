@@ -6,7 +6,7 @@ import randomColor from "randomcolor";
 export const startingCPVelocity = 1.0;
 const curveSizeToCPSizeRatio = 7.0/5.0;
 
-const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
+export const clamp = (x: number, value: number) => Math.max(Math.min(x, value), -value);
 
 export type Luminosity = "normal" | "random" | "dark" | "light" | "bright" | undefined;
 
@@ -15,8 +15,9 @@ export class State {
   maxControlPointSize = Math.round(this.maxCurveSize*curveSizeToCPSizeRatio);
   maxCPVelocity = 3;
 
-  scale = 0.7;
-  scaleVelocity = 0;
+  maxScaleDelta = 0.25;
+  scale = 1;
+  scaleVelocity = 0.2;
 
   curveWidth = 4;
 
@@ -98,6 +99,10 @@ export class State {
   }
   setC2yVelocity(vel: number) {
     this.c2yVelocity = clamp(this.c2yVelocity >= 0 ? vel : -vel, this.maxCPVelocity);
+  }
+
+  setScaleVelocity(vel: number) {
+    this.scaleVelocity = clamp(this.scaleVelocity >= 0 ? vel : -vel, 1);
   }
 
   getCurve() {

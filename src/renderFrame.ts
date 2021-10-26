@@ -61,5 +61,11 @@ const updateState = (state: State, timeDelta: number) => {
 
   state.spin = state.spin + state.spinVelocity*timeDelta/500 % (Math.PI*2.0)
 
+  if (state.scale >= 1+state.maxScaleDelta) 
+    state.scaleVelocity = -Math.abs(state.scaleVelocity);
+  if (state.scale <= 1-state.maxScaleDelta) 
+    state.scaleVelocity = Math.abs(state.scaleVelocity);
+  state.scale = state.scale + state.scaleVelocity*timeDelta/3500;
+
   state.renderControls();
 }
