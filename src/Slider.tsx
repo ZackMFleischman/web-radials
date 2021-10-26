@@ -5,7 +5,8 @@ import { ControlLabel, controlLabelHeight } from "./ControlLabel";
 
 // https://zillow.github.io/react-slider/
 const sliderHeight = controlLabelHeight;
-const sliderWidth = 200;
+export const sliderWidth = 200;
+export const sliderSmallerWidthRatio = 0.7;
 
 const StyledThumb = styled.div`
   height: ${sliderHeight + 2}px;
@@ -40,7 +41,7 @@ const StyledSlider = styled(ReactSlider)`
   width: ${sliderWidth}px;
 
   @media (max-width: 768px) {
-    width: ${sliderWidth * 0.7}px;
+    width: ${sliderWidth * sliderSmallerWidthRatio}px;
   }
 `;
 

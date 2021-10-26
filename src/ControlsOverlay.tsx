@@ -4,6 +4,7 @@ import { Slider } from "./Slider";
 import { startingCPVelocity, State } from "./State";
 import { Toggler } from "./Toggler";
 import randomColor from "randomcolor";
+import { Dropdown } from "./Dropdown";
 
 // Docs: https://github.com/davidmerfield/randomColor
 
@@ -140,6 +141,15 @@ export const ControlsOverlay: React.FC<{ state: State }> = ({ state }) => {
       >
         {`Random Color${state.colorPaletteSize > 1 ? "s" : ""}`}
       </ControlButton>
+      <Dropdown
+        options={[
+          { value: "chocolate", label: "Chocolate" },
+          { value: "strawberry", label: "Strawberry" },
+          { value: "vanilla", label: "Vanilla" },
+        ]}
+        placeholder="Select Color Palette..."
+        label="Color Palette"
+      />
       <Slider
         value={state.colorPaletteSize}
         min={1}
