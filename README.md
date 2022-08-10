@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Radials.net
+
+This project plays with parameterized bezier curves that the user can play with to make interesting hyponotic visuals.
+<img width="1109" alt="Radials 2022-08-10 14-21-28" src="https://user-images.githubusercontent.com/4298857/183988264-d9ec5e5c-f1d1-49a7-9899-64d83a5806d0.png">
+
+This is deployed at [radials.net](http://www.radials.net).
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
